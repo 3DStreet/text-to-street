@@ -10,3 +10,7 @@ or it could be also optional format: `3dstreet.app/#query=street_description`
 #### Description of the request URL to the firebase function
 The user's request with a text description of the street is transmitted in the `query` parameter of the http request or by json (if the mimetype of request is `application/json`): {'query': '...'}. After deploying the firebase function to the firebase server, a URL is provided to access the function described here.
 
+# Next steps
+- create JSON with a description of segments and their variants supported in 3dStreet
+- use it to check the model's response and to generate a better assistant's response
+- continue the dialogue after generating the street to correct/change street parameters
