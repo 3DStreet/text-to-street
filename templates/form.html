@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+    <html lang="en-us">
+    <head>
+      <meta charset="utf-8">
+      <title>Python form submission example</title>
+      <style>
+        form {
+          width: 420px;
+        }
+
+        div {
+          margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+
+        label {
+          display: inline-block;
+          width: 240px;
+          text-align: right;
+          padding-right: 10px;
+        }
+
+        button, input {
+          float: right;
+        }
+      </style>
+    </head>
+    <body>
+      <form method="post" action="{{ url_for('querytext') }}">
+        <div>
+          <label for="query">Describe here the street you want to get in 3DStreet:</label>
+            <textarea name="query" id="query" ></textarea>
+        </div>
+        <div>
+          <button>Send my query</button>
+        </div>
+      </form>
+    </body>
+  </html>

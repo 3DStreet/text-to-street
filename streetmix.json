@@ -1,0 +1,114 @@
+{
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "name of created street",
+      "default": "default street"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "object",
+          "properties": {
+            "rightBuildingVariant": {
+              "type": "string",
+              "description": "A string to determine which building variant to create for the right side of the street. Can use only provided variants from enum array",
+              "enum": [
+                "grass",
+                "narrow",
+                "residental",
+                "fence",
+                "parking-lot",
+                "waterfront",
+                "wide"
+              ],
+              "default": "grass"
+            },
+            "leftBuildingVariant": {
+              "type": "string",
+              "description": "A string to determine which building variant to create for the left side of the street. Can use only provided variants from enum array",
+              "enum": [
+                "grass",
+                "narrow",
+                "residental",
+                "fence",
+                "parking-lot",
+                "waterfront",
+                "wide"
+              ],
+              "default": "grass"
+            },
+            "width": {
+              "type": "number",
+              "description": "street length in meters. But it names width in property of street. Use default if not provided",
+              "default": 150
+            },
+            "segments": {
+              "type": "array",
+              "description": "list of segments of a cross-section perspective of the 3D scene, each with a width in imperial feet units, a type in string format, and a variantString that applies modifications to the segment type",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "width": {
+                    "type": "number",
+                    "description": "segment width in imperial feet units",
+                    "default": 9
+                  },
+                  "variantString": {
+                    "type": "string",
+                    "description": "Variant of segment. It's depend upon which segment type is selected. variantString values are separated by a pipe character (literally '|'). Most drive lane segments have an 'inbound' or 'outbound' value as the first variant."
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "street segment type. Using default width for each segment from streetmix API",
+                    "enum": [
+                      "sidewalk",
+                      "streetcar",
+                      "bus-lane",
+                      "drive-lane",
+                      "light-rail",
+                      "streetcar",
+                      "turn-lane",
+                      "divider",
+                      "temporary",
+                      "stencils",
+                      "food-truck",
+                      "flex-zone",
+                      "sidewalk-wayfinding",
+                      "sidewalk-bench",
+                      "sidewalk-bike-rack",
+                      "magic-carpet",
+                      "outdoor-dining",
+                      "parklet",
+                      "bikeshare",
+                      "utilities",
+                      "sidewalk-tree",
+                      "sidewalk-lamp",
+                      "transit-shelter",
+                      "parking-lane"
+                    ],
+                    "default": "sidewalk"
+                  },
+                  "elevation": {
+                    "type": "number",
+                    "description": "elevation level for segment. 1 is default for all type of sidewalks and buildings, 0 is default for roads, lanes, parking, etc",
+                    "enum": [
+                      0,
+                      1
+                    ],
+                    "default": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "data"
+  ],
+  "type": "object"
+}

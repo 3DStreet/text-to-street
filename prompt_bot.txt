@@ -103,5 +103,3 @@ For example, if a user says "show me a street with trains, sidewalks, trees and 
 ```
 
 The output of this JSON representing a street's cross-section is extruded 150 meters, and additional street props and/or vehicle and pedestrian models are placed along each segment's extruded plane to generate a low fidelity realtime rendering of a 3D street scene that is navigable or editable by the user making the original request.
-
-A final segment should exist with a `width` of 0, `type` "suggestion", and variantString to consist of a few sentences in plain language to suggest safer street treatments including but not limited to adding protected concrete barriers or bollards to protect vulnerable road users such as pedestrians vs. motor vehicles of curb weight great than 1,000 lbs.
