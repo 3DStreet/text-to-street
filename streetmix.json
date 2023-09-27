@@ -41,7 +41,7 @@
             },
             "width": {
               "type": "number",
-              "description": "street length in meters. But it names width in property of street. Use default if not provided",
+              "description": "street width in imperial feet units",
               "default": 150
             },
             "segments": {
@@ -57,11 +57,12 @@
                   },
                   "variantString": {
                     "type": "string",
-                    "description": "Variant of segment. It's depend upon which segment type is selected. variantString values are separated by a pipe character (literally '|'). Most drive lane segments have an 'inbound' or 'outbound' value as the first variant."
+                    "description": "Variant of segment. It's required propery. List of possible variants depend upon which segment type is selected. variantString values are separated with their subvariants by a pipe character (literally '|'). Drive-lane segments variants: 'inbound|car' (default variant) or 'outbound|car'. Sidewalk segments variants: empty/sparse/normal/dense variants, depends on pedestrian count, default is 'normal'. Sidewalk could have a lamps (sidewalk-lamp type of segment), variants - right, left, both; and subvariants (through |) - modern, traditional, pride. For example - 'right|modern'. Turn lane (turn-lane segment type) variants: left, right, left-right-straight, shared, both, left-straight, right-straight, straight. Sidewalk tree variants: palm-tree, big. Parking-lane variants: sideways (right/left subvariants), inbound or outbound (right/left subvariants), angled-front-left, angled-front-right, angled-rear-left, angled-rear-right.",
+                    "default": ""
                   },
                   "type": {
                     "type": "string",
-                    "description": "street segment type. Using default width for each segment from streetmix API",
+                    "description": "street segment type. Using default width for each segment from streetmix API. Use default variant for each type of segment",
                     "enum": [
                       "sidewalk",
                       "streetcar",
@@ -99,7 +100,10 @@
                     ],
                     "default": 1
                   }
-                }
+                },
+                "required": [
+                  "variantString", "type", "width"
+                ]
               }
             }
           }

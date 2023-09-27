@@ -36,9 +36,7 @@ def get_streetmix_json(user_message):
     sreetmix_schema = load_streetmix_schema()
     messages = [
         {"role": "system", "content": assistant_description},
-        {"role": "system", "content": "Only use the functions you have been provided with."},
-        {"role": "system", "content": "Use default values for properties if they are not provided"},
-        {"role": "system", "content": "Only output valid JSON"},
+        {"role": "system", "content": "Only use the functions you have been provided with. Use default values for properties if they are not provided. Only output valid JSON"},
         {"role": "user", "content": user_message}
     ]
     functions = [
