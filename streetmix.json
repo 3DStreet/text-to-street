@@ -41,8 +41,7 @@
             },
             "width": {
               "type": "number",
-              "description": "street width in imperial feet units",
-              "default": 150
+              "description": "street width in imperial feet units. This is the sum of the width values of all segments"
             },
             "segments": {
               "type": "array",
@@ -52,20 +51,62 @@
                 "properties": {
                   "width": {
                     "type": "number",
-                    "description": "segment width in imperial feet units",
+                    "description": "segment width in imperial feet units. Here is minimal width for each type of segment: {'sidewalk-tree': 4, 'sidewalk-bike-rack': 5, 'sidewalk-bench': 4, 'sidewalk-wayfinding': 4, 'sidewalk-lamp': 4, 'bus-lane': 12, 'drive-lane': 10, 'light-rail': 12, 'streetcar': 12, 'turn-lane': 10, 'divider': 2, 'stencils': 12, 'food-truck': 10, 'flex-zone': 7, 'parking-lane': 7 for inbound and outbound variantString and 14 for other variants}",
                     "default": 9
                   },
                   "variantString": {
                     "type": "string",
-                    "description": "Variant of segment. It's required propery. List of possible variants depend upon which segment type is selected. variantString values are separated with their subvariants by a pipe character (literally '|'). Drive-lane segments variants: 'inbound|car' (default variant) or 'outbound|car'. Sidewalk segments variants: empty/sparse/normal/dense variants, depends on pedestrian count, default is 'normal'. Sidewalk could have a lamps (sidewalk-lamp type of segment), variants - right, left, both; and subvariants (through |) - modern, traditional, pride. For example - 'right|modern'. Turn lane (turn-lane segment type) variants: left, right, left-right-straight, shared, both, left-straight, right-straight, straight. Sidewalk tree variants: palm-tree, big. Parking-lane variants: sideways (right/left subvariants), inbound or outbound (right/left subvariants), angled-front-left, angled-front-right, angled-rear-left, angled-rear-right.",
-                    "default": ""
+                    "oneOf": [
+                      {
+                        "items": {
+                          "enum": ["inbound|car","outbound|car"],
+                          "description": "variants for drive-lane segments"
+                        }
+                      },
+                      {
+                        "items": {
+                          "enum": ["empty", "sparse", "normal", "dense"],
+                          "description": "variants for sidewalks segments. Default is 'normal'"
+                        }
+                      },
+                      {
+                        "items": {
+                          "enum": ["right|modern","both|modern", "left|modern", "right|traditional", "both|traditional", "left|traditional", "right|pride", "both|pride", "left|pride"],
+                          "description": "variants for sidewalk-lamp segments. Default is 'both|traditional'"
+                        }
+                      },
+                      {
+                        "items": {
+                          "enum": ["left", "right"],
+                          "description": "variants for utilities segments. Default is 'normal'"
+                        }
+                      }, 
+                      {
+                        "items": {
+                          "enum": ["left", "right", "left-right-straight", "shared", "both", "left-straight", "right-straight", "straight"],
+                          "description": "variants for turn-lane segments"
+                        }
+                      }, 
+                      {
+                        "items": {
+                          "enum": ["big", "palm-tree"],
+                          "description": "variants for sidewalk-tree segments"
+                        }
+                      },
+                      {
+                        "items": {
+                          "enum": ["sideways|right", "sideways|left", "inbound|right", "inbound|left", "outbound|left", "outbound|right", "angled-front-left|left", "angled-front-right|left", "angled-rear-left|left", "angled-rear-right|left", "angled-front-left|right", "angled-front-right|right", "angled-rear-left|right", "angled-rear-right|right"],
+                          "description": "variants for parking-lane segments"
+                        }
+                      }
+                    ],
+                    "description": "Variant of segment. It's required propery. List of possible variants depend upon which segment type is selected. variantString values are separated with their subvariants by a pipe character (literally '|'). Drive-lane segments possible variants: 'inbound|car' (default variant) or 'outbound|car'. Most of drive-lane segments have a car subvariant by default. Sidewalk segments possible variants: empty/sparse/normal/dense variants, depends on pedestrian count, default is normal. Sidewalk could have a lamps (sidewalk-lamp type of segment), variants: right, left, both; and subvariants (through |): modern, traditional, pride. For example and by default 'right|modern'. Turn lane (turn-lane segment type) variants: left, right, left-right-straight, shared, both, left-straight, right-straight, straight. Sidewalk tree variants: palm-tree, big. Parking-lane variants: sideways (subvariants right,left), inbound or outbound (subvariants right,left), angled-front-left (angled front left), angled-front-right (angled front right), angled-rear-left (angled rear left), angled-rear-right (angled rear right)."
                   },
                   "type": {
                     "type": "string",
                     "description": "street segment type. Using default width for each segment from streetmix API. Use default variant for each type of segment",
                     "enum": [
                       "sidewalk",
-                      "streetcar",
                       "bus-lane",
                       "drive-lane",
                       "light-rail",
