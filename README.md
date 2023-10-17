@@ -1,5 +1,6 @@
-# Text to street assistant (chatbot, powered by OpenAI GPT model)
-The assistant's purpose is to use the given text description of the street to create a corresponding 3D model of the street on the 3DStreet.org portal. The response is returned as a URL in next format: 
+# Text-to-Street
+## Street assistant chatbot, powered by OpenAI GPT-4 model
+The assistant's purpose is to use the given text description of the street to create a corresponding 3D model of the street in 3DStreet.app. The response is returned as a URL in next format: 
 `3dstreet.app/#url_encoded_json=...`
 or it could be also optional format: `3dstreet.app/#query=street_description`
 ### Main parts of code:
