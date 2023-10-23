@@ -17,7 +17,7 @@ The user's request with a text description of the street is transmitted in the `
 - continue the dialogue after generating the street to correct/change street parameters
 
 Running streaming to console demo:
-
+```
 add .env with OPENAI_API_KEY=[your token] inside of ./functions
 python3 -m venv ./venv
 pip3 install -r requirements.txt
@@ -25,3 +25,4 @@ cd functions
 python3
 from texttostreetdemo import get_streetmix_json
 get_streetmix_json('make a street with 1 car lane and 1 parking lane')
+```
